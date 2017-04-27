@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mrcai.mapper.WaterLevelMapper">
+
+    <select id="getWaterLevel" resultMap="WaterLevelInfo">
+        SELECT * FROM water_level_info WHERE area_id = #{areaId} AND hardware_id = #{hardwareId}
+    </select>
+
+    <insert id="addWaterLevel">
+        INSERT INTO water_level_info VALUES (#{areaId}, #{hardwareId}, #{waterLevel}, #{time})
+    </insert>
+
+    <select id="getWaterLevelByTime" resultMap="WaterLevelInfo">
+        SELECT * FROM water_level_info
+        WHERE area_id = #{areaId} AND hardware_id = #{hardwareId}
+        <if test="startTime != null">
+            <![CDATA[ and time >= #{startTime}  ]]>
+        </if>
+        <if test="endTime != null">
+            <![CDATA[ and time <= #{endTime}  ]]>
+        </if>
+    </select>
+
+    <resultMap id="WaterLevelInfo" type="com.mrcai.model.WaterLevelInfo">
+        <id column="area_id" property="areaId"/>
+        <id column="hardware_id" property="hardwareId"/>
+        <result column="water_level" property="waterLevel"/>
+        <result column="time" property="time"/>
+    </resultMap>
+
+</mapper>

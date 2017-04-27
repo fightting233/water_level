@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mrcai.mapper.HardwareMapper">
+
+    <select id="getHardwareInfo" resultMap="HardwareInfo">
+        SELECT * FROM hardware_info WHERE area_id = #{areaId} AND hardware_id = #{hardwareId}
+    </select>
+
+    <insert id="addHardware">
+        INSERT INTO hardware_info VALUES (#{areaId}, #{hardwareId}, #{hardwareName}, #{hardwareAddr}, #{hardwareInfo})
+    </insert>
+
+    <resultMap id="HardwareInfo" type="com.mrcai.model.HardwareInfo">
+        <id column="area_id" property="areaId"/>
+        <id column="hardware_id" property="hardwareId"/>
+        <result column="hardware_name" property="hardwareName"/>
+        <result column="hardware_addr" property="hardwareAddr"/>
+        <result column="hardware_info" property="hardwareInfo"/>
+    </resultMap>
+
+</mapper>
