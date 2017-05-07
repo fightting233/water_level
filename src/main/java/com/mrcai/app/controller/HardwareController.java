@@ -57,17 +57,40 @@ public class HardwareController {
         String name = (String) map.get("name");
         String addr = (String) map.get("addr");
         String info = (String) map.get("info");
+        double longitude = (double) map.get("longitude");
+        double latitude = (double) map.get("latitude");
         if (aid == null || pid == null || name == null || addr == null || info == null)
             return ResponseType.jsonParamError(null);
-        HardwareInfo hardwareInfo1 = hardwareService.addHardware(aid, pid, name, addr, info);
-        if (hardwareInfo1 == null)
+        if (hardwareService.isExist(aid, pid))
             return ResponseType.hardwareAlreadyExist(null);
         User user = userService.findUserByUserName(userName);
         if (user == null)
             return ResponseType.actionFaild("用户不存在");
         if (!user.getToken().equals(token))
             return ResponseType.tokenRrror(null);
-        return new Response(ResponseInfo.ACTION_SUCCEED_DESCRIPTION, ResponseInfo.ACTION_SUCCEED, hardwareInfo1);
+        HardwareInfo hardwareInfo = hardwareService.addHardware(aid, pid, name, addr, info, longitude, latitude);
+        return new Response(ResponseInfo.ACTION_SUCCEED_DESCRIPTION, ResponseInfo.ACTION_SUCCEED, hardwareInfo);
+    }
+
+    /**
+     * 删除监测站
+     * @param aid
+     * @param hid
+     * @param userName
+     * @param token
+     * @return
+     */
+    @GetMapping(value = "/delete")
+    public Response deleteHardware(int aid, int hid, @PathVariable(value = "userName") Long userName,
+                                    @PathVariable(value = "token") String token){
+        User user = userService.findUserByUserName(userName);
+        if (user == null)
+            return ResponseType.actionFaild("用户不存在");
+        if (!user.getToken().equals(token))
+            return ResponseType.tokenRrror(null);
+        if (!hardwareService.deleteHardware(aid, hid))
+            return ResponseType.actionFaild("数据库操作失败");
+        return new Response(ResponseInfo.ACTION_SUCCEED_DESCRIPTION, ResponseInfo.ACTION_SUCCEED, null);
     }
 
 }

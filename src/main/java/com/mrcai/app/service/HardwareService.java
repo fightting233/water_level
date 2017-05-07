@@ -18,20 +18,20 @@ public class HardwareService {
         return hardwareMapper.getHardwareInfo(areaId, hardwareId);
     }
 
-    public HardwareInfo addHardware(int areaId, int hardwareId, String hardwareName, String hardwareAddr, String hardwareInfo){
+    public HardwareInfo addHardware(int areaId, int hardwareId, String hardwareName, String hardwareAddr,
+                                    String hardwareInfo, double longitude, double latitude){
         if (isExist(areaId, hardwareId))
             return null;
-        hardwareMapper.addHardware(areaId, hardwareId, hardwareName, hardwareAddr, hardwareInfo);
-        HardwareInfo hardwareInfo1 = new HardwareInfo();
-        hardwareInfo1.setAreaId(areaId);
-        hardwareInfo1.setHardwareId(hardwareId);
-        hardwareInfo1.setHardwareName(hardwareName);
-        hardwareInfo1.setHardwareAddr(hardwareAddr);
-        hardwareInfo1.setHardwareInfo(hardwareInfo);
-        return hardwareInfo1;
+        hardwareMapper.addHardware(areaId, hardwareId, hardwareName, hardwareAddr, hardwareInfo, longitude, latitude);
+        return hardwareMapper.getHardwareInfo(areaId, hardwareId);
     }
 
-    private boolean isExist(Integer areaId, Integer hardwareId) {
+    public boolean deleteHardware(int areaId, int hardwareId){
+        hardwareMapper.deleteHardware(areaId, hardwareId);
+        return !isExist(areaId, hardwareId);
+    }
+
+    public boolean isExist(Integer areaId, Integer hardwareId) {
         if (getHardwareInfo(areaId, hardwareId) == null)
             return false;
         return true;

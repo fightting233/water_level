@@ -9,8 +9,12 @@
     </select>
 
     <insert id="addHardware">
-        INSERT INTO hardware_info VALUES (#{areaId}, #{hardwareId}, #{hardwareName}, #{hardwareAddr}, #{hardwareInfo})
+        INSERT INTO hardware_info VALUES (#{areaId}, #{hardwareId}, #{hardwareName}, #{hardwareAddr}, #{hardwareInfo}, #{longitude}, #{latitude})
     </insert>
+
+    <delete id="deleteHardware">
+        DELETE FROM hardware_info WHERE area_id = #{areaId} AND hardware_id = #{hardwareId}
+    </delete>
 
     <resultMap id="HardwareInfo" type="com.mrcai.model.HardwareInfo">
         <id column="area_id" property="areaId"/>
@@ -18,6 +22,8 @@
         <result column="hardware_name" property="hardwareName"/>
         <result column="hardware_addr" property="hardwareAddr"/>
         <result column="hardware_info" property="hardwareInfo"/>
+        <result column="longitude" property="longitude"/>
+        <result column="latitude" property="latitude"/>
     </resultMap>
 
 </mapper>
