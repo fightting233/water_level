@@ -29,8 +29,10 @@ public class UserOperation {
      * @return
      */
     public boolean updatePassword(Long userName, String password){
-        WriteResult writeResult= operations.updateFirst(new Query(new Criteria("userName").is(userName)),
-                new Update().set("password", password), User.class);
+        WriteResult writeResult= operations.updateFirst(
+                new Query(new Criteria("userName").is(userName)),
+                new Update().set("password", password),
+                User.class);
         System.out.println(writeResult.toString());
         return writeResult.isUpdateOfExisting();
     }

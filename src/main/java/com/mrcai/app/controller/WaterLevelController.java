@@ -68,4 +68,16 @@ public class WaterLevelController {
         return new Response(ResponseInfo.ACTION_SUCCEED_DESCRIPTION, ResponseInfo.ACTION_SUCCEED, "");
     }
 
+    @GetMapping(value = "/getRecent")
+    public double[] getWaterlevelRecent(int aid, int hid, int startTime, int endTime){
+//        int endTime = (int) (System.currentTimeMillis() / 1000);
+//        int startTime = endTime - 24 * 60 * 60;
+        List<WaterLevelInfo> waterLevelInfoList = waterLevelService.getWaterLevelByTime(aid, hid, startTime, endTime);
+        double[] waterLevelList = new double[waterLevelInfoList.size()];
+        for (int i = 0; i < waterLevelInfoList.size(); i++) {
+            waterLevelList[i] = waterLevelInfoList.get(i).getWaterLevel();
+        }
+        return waterLevelList;
+    }
+
 }
