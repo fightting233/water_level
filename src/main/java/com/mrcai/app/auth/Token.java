@@ -2,9 +2,9 @@ package com.mrcai.app.auth;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONException;
-import com.mrcai.model.User;
-import com.mrcai.util.ArrayTool;
-import com.mrcai.util.MD5Tool;
+import com.mrcai.app.model.User;
+import com.mrcai.app.util.ArrayTool;
+import com.mrcai.app.util.MD5Tool;
 import org.apache.tomcat.util.codec.binary.Base64;
 
 /**

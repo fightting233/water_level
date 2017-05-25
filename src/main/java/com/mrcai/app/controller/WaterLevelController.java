@@ -2,16 +2,16 @@ package com.mrcai.app.controller;
 
 import com.mrcai.app.service.UserService;
 import com.mrcai.app.service.WaterLevelService;
-import com.mrcai.model.User;
-import com.mrcai.model.response.Response;
-import com.mrcai.model.WaterLevelInfo;
-import com.mrcai.model.response.ResponseInfo;
+import com.mrcai.app.model.User;
+import com.mrcai.app.model.response.Response;
+import com.mrcai.app.model.WaterLevelInfo;
+import com.mrcai.app.model.response.ResponseInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.mrcai.util.*;
+import com.mrcai.app.util.*;
 
 import java.util.List;
 
@@ -28,7 +28,7 @@ public class WaterLevelController {
     UserService userService;
 
     /**
-     * 查询水位信息
+     * 查询实时水位信息
      * @param aid   区域id
      * @param hid   硬件id
      * @return
@@ -47,6 +47,16 @@ public class WaterLevelController {
         return new Response(ResponseInfo.ACTION_SUCCEED_DESCRIPTION, ResponseInfo.ACTION_SUCCEED, waterLevelInfo);
     }
 
+    /**
+     * 根据时间段查询
+     * @param aid 区域id
+     * @param hid 硬件id
+     * @param startTime 开始时间
+     * @param endTime 结束时间
+     * @param userName 用户名
+     * @param token token
+     * @return
+     */
     @GetMapping(value = "/getByTime")
     public Response getWaterlevelByTime(int aid, int hid, int startTime, int endTime,
                                         @PathVariable(value = "userName") Long userName,
@@ -70,8 +80,6 @@ public class WaterLevelController {
 
     @GetMapping(value = "/getRecent")
     public double[] getWaterlevelRecent(int aid, int hid, int startTime, int endTime){
-//        int endTime = (int) (System.currentTimeMillis() / 1000);
-//        int startTime = endTime - 24 * 60 * 60;
         List<WaterLevelInfo> waterLevelInfoList = waterLevelService.getWaterLevelByTime(aid, hid, startTime, endTime);
         double[] waterLevelList = new double[waterLevelInfoList.size()];
         for (int i = 0; i < waterLevelInfoList.size(); i++) {

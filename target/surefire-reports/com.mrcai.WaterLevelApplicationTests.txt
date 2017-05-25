@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.mrcai.WaterLevelApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.72 sec - in com.mrcai.WaterLevelApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 9.874 sec - in com.mrcai.WaterLevelApplicationTests

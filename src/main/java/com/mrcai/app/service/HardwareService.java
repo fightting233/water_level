@@ -1,7 +1,7 @@
 package com.mrcai.app.service;
 
-import com.mrcai.mapper.HardwareMapper;
-import com.mrcai.model.HardwareInfo;
+import com.mrcai.app.model.mapper.HardwareMapper;
+import com.mrcai.app.model.HardwareInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

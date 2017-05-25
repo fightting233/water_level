@@ -1,6 +1,6 @@
 package com.mrcai.app.service.serviceImp;
 
-import com.mrcai.model.User;
+import com.mrcai.app.model.User;
 
 /**
  * Created by Administrator on 2017/4/7.

@@ -1,0 +1,129 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>地下水位监测系统</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/datepicker3.css" rel="stylesheet"/>
+    <link href="css/styles.css" rel="stylesheet"/>
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/echarts.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" />
+    <script src="http://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="js/data.js"></script>
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" >地下水位监测系统</a>
+        </div>
+    </div>
+</nav>
+
+<div class="row">
+    <div class="col-lg-12">
+
+        <div class="panel panel-default" style="padding: 10px 10px 10px;">
+            <form class="bs-example bs-example-form" role="form">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="input-group">
+                            <span class="input-group-addon">aid</span>
+                            <input id="aid" type="text" class="form-control" placeholder="161521366">
+                            <span class="input-group-addon">hid</span>
+                            <input id="pid" type="text" class="form-control" placeholder="2">
+                            <span class="input-group-btn">
+						<button class="btn btn-default" type="button" onclick="show()">
+							查询
+						</button>
+					</span>
+                        </div><!-- /input-group -->
+                    </div><!-- /.col-lg-6 -->
+                </div><!-- /.row -->
+            </form>
+        </div>
+        <!--<div class="panel panel-default" style="height: 80px">-->
+            <!--<input type="text" id="aid" name="aid">aid</input>-->
+            <!--<input type="text" id="hid" name="hid">hid</input>-->
+            <!--<button type="button" onclick="show()">show aid</button>-->
+        <!--</div>-->
+
+        <div class="panel panel-default">
+            <div class="panel-heading">近24小时地下水位情况</div>
+            <div class="panel-body">
+                <div id="recentDay" style="width:90%;height:90%;"></div>
+            </div>
+        </div>
+
+
+        <div class="panel panel-default">
+            <div class="panel-heading">近一周地下水位情况</div>
+            <div class="panel-body">
+                <div id="recentWeek" style="width:90%;height:90%;"></div>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">水位信息</div>
+            <div class="panel-body">
+                <table id="example" class="display" cellspacing="0" width="80%">
+                    <thead>
+                    <tr>
+                        <th>区域编号</th>
+                        <th>监测站编号</th>
+                        <th>水位值（cm）</th>
+                        <th>时间</th>
+                    </tr>
+                    </thead>
+                    <tfoot>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div><!--/.row-->
+
+</div>
+
+<script src="js/bootstrap.min.js"></script>
+<script src="js/chart.min.js"></script>
+<script src="js/chart-data.js"></script>
+<script src="js/easypiechart.js"></script>
+<script src="js/bootstrap-datepicker.js"></script>
+<script>
+    $('#calendar').datepicker({
+    });
+
+    !function ($) {
+        $(document).on("click","ul.nav li.parent > a > span.icon", function(){
+            $(this).find('em:first').toggleClass("glyphicon-minus");
+        });
+        $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
+    }(window.jQuery);
+
+    $(window).on('resize', function () {
+        if ($(window).width() > 768) $('#sidebar-collapse').collapse('show');
+        if ($(window).width() > 768) $('#sidebar-collapse').style.padding()
+    })
+    $(window).on('resize', function () {
+        if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
+    })
+</script>
+
+</body>
+
+</html>

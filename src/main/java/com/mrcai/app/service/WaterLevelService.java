@@ -1,7 +1,7 @@
 package com.mrcai.app.service;
 
-import com.mrcai.mapper.WaterLevelMapper;
-import com.mrcai.model.WaterLevelInfo;
+import com.mrcai.app.model.mapper.WaterLevelMapper;
+import com.mrcai.app.model.WaterLevelInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

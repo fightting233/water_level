@@ -1,9 +1,9 @@
 package com.mrcai.app.service;
 
 import com.mrcai.app.auth.Token;
-import com.mrcai.app.repository.UserOperation;
+import com.mrcai.app.model.repository.UserOperation;
 import com.mrcai.app.service.serviceImp.UserServiceImp;
-import com.mrcai.model.User;
+import com.mrcai.app.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,0 +1,124 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>地下水位监测系统</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/datepicker3.css" rel="stylesheet"/>
+    <link href="css/styles.css" rel="stylesheet"/>
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/echarts.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" >地下水位监测系统</a>
+        </div>
+    </div>
+</nav>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">水位信息</div>
+                <div class="panel-body">
+                    <div id="main" style="width: 600px;height:400px;"></div>
+                </div>
+            </div>
+        </div>
+    </div><!--/.row-->
+
+</div>
+<script type="text/javascript">
+    var myChart = echarts.init(document.getElementById('main'));
+    var data = [];
+    var data2 = [];
+
+    var option = {
+        title: {
+            text: '近24小时地下水位情况'
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data:[]
+        },
+        toolbox: {
+            show: true,
+            feature: {
+                saveAsImage: {show: true}
+            }
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: data2
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [{
+            name: '水位',
+            type: 'line',
+            smooth: true,
+            data: data
+        }]
+    };
+
+    $(function () {
+        $.ajax({
+            type: "post",
+            url: "/web/getByTime",
+            data:{},
+            success: function (a) {
+                var water = jQuery.parseJSON(a);
+                $.each(water.level, function (idx, comment) {
+                    data.push(comment);
+                });
+                $.each(water.time, function (idx, comment) {
+                    data2.push(comment);
+                });
+                myChart.setOption(option);
+            }
+        });
+    })
+
+
+</script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/chart.min.js"></script>
+<script src="js/chart-data.js"></script>
+<script src="js/easypiechart.js"></script>
+<script src="js/bootstrap-datepicker.js"></script>
+<script>
+    $('#calendar').datepicker({
+    });
+
+    !function ($) {
+        $(document).on("click","ul.nav li.parent > a > span.icon", function(){
+            $(this).find('em:first').toggleClass("glyphicon-minus");
+        });
+        $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
+    }(window.jQuery);
+
+    $(window).on('resize', function () {
+        if ($(window).width() > 768) $('#sidebar-collapse').collapse('show');
+        if ($(window).width() > 768) $('#sidebar-collapse').style.padding()
+    })
+    $(window).on('resize', function () {
+        if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
+    })
+</script>
+</body>
+
+</html>

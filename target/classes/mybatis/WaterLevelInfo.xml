@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.mrcai.mapper.WaterLevelMapper">
+<mapper namespace="com.mrcai.app.mapper.WaterLevelMapper">
 
     <select id="getWaterLevel" resultMap="WaterLevelInfo">
         SELECT * FROM water_level_info WHERE area_id = #{areaId} AND hardware_id = #{hardwareId}
@@ -23,7 +23,7 @@
         </if>
     </select>
 
-    <resultMap id="WaterLevelInfo" type="com.mrcai.model.WaterLevelInfo">
+    <resultMap id="WaterLevelInfo" type="com.mrcai.app.model.WaterLevelInfo">
         <id column="area_id" property="areaId"/>
         <id column="hardware_id" property="hardwareId"/>
         <result column="water_level" property="waterLevel"/>

@@ -2,13 +2,13 @@ package com.mrcai.app.controller;
 
 import com.mrcai.app.service.HardwareService;
 import com.mrcai.app.service.UserService;
-import com.mrcai.model.HardwareInfo;
-import com.mrcai.model.User;
-import com.mrcai.model.response.Response;
-import com.mrcai.model.response.ResponseInfo;
+import com.mrcai.app.model.HardwareInfo;
+import com.mrcai.app.model.User;
+import com.mrcai.app.model.response.Response;
+import com.mrcai.app.model.response.ResponseInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import com.mrcai.util.*;
+import com.mrcai.app.util.*;
 
 import java.util.Map;
 

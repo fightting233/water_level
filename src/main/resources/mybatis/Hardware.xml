@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.mrcai.mapper.HardwareMapper">
+<mapper namespace="com.mrcai.app.model.mapper.HardwareMapper">
 
     <select id="getHardwareInfo" resultMap="HardwareInfo">
         SELECT * FROM hardware_info WHERE area_id = #{areaId} AND hardware_id = #{hardwareId}
@@ -16,7 +16,7 @@
         DELETE FROM hardware_info WHERE area_id = #{areaId} AND hardware_id = #{hardwareId}
     </delete>
 
-    <resultMap id="HardwareInfo" type="com.mrcai.model.HardwareInfo">
+    <resultMap id="HardwareInfo" type="com.mrcai.app.model.HardwareInfo">
         <id column="area_id" property="areaId"/>
         <id column="hardware_id" property="hardwareId"/>
         <result column="hardware_name" property="hardwareName"/>
